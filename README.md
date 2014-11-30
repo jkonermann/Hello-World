@@ -19,3 +19,9 @@ Start from scratch and see what I run into
 3. mvn clean install
 4. java -jar hello-world-1.0.0-SNAPSHOT-runtime.jar -> Hello world!
 
+## Add some actors and use them
+
+1. Create ActorActivator
+2. Create Actors
+3. Add reference.conf
+
