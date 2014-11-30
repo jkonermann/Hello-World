@@ -17,7 +17,7 @@ class Ping(pongActor:ActorRef) extends Actor with ActorLogging {
   override def receive: Receive = {
 
     case start(numberOfTimes) =>
-      log.debug(s"Ping received start with count=$count")
+      log.debug(s"Ping received start with count=$numberOfTimes")
       commander = sender()
       count = numberOfTimes
       pongActor ! ping

@@ -2,6 +2,8 @@
 
 Start from scratch and see what I run into
 
+Keywords: Github, Maven, Scala, Akka, configuration, logging, testing
+
 ## A Hello-World repository
 
 1. Create repository
@@ -23,5 +25,6 @@ Start from scratch and see what I run into
 
 1. Create ActorActivator
 2. Create Actors
-3. Add reference.conf
+3. Add reference.conf for logging and configuration
+4. Add tests
 
