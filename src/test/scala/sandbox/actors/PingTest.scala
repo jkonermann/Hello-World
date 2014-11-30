@@ -17,7 +17,7 @@ class PingTest
   with Matchers
   with BeforeAndAfterAll {
 
-  val pongActor = system.actorOf(Pong.props(), "pong")
+  val pongActor = system.actorOf(Pong.props().withDispatcher("pong-dispatcher"), "pong")
   val pingActor = system.actorOf(Ping.props(pongActor), "ping")
 
   override def afterAll() {

@@ -24,7 +24,8 @@ object ActorActivator {
     val numberOfTimes = config.getInt("numberOfTimes")
 
     val system = ActorSystem("ping-pong")
-    val pong = system.actorOf(Pong.props(), "pong")
+    val pong = system.actorOf(Pong.props()
+      .withDispatcher("pong-dispatcher"), "pong")
     val ping = system.actorOf(Ping.props(pong), "ping")
 
     val result: Future[String] = (ping ? start(numberOfTimes)).mapTo[String]

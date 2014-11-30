@@ -27,7 +27,7 @@ class PongTest
   with Matchers
   with BeforeAndAfterAll {
 
-  val pongActor = system.actorOf(Pong.props(), "pong")
+  val pongActor = system.actorOf(Pong.props().withDispatcher("pong-dispatcher"), "pong")
 
   override def afterAll() {
     shutdown()
