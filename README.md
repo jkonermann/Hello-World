@@ -27,4 +27,5 @@ Keywords: Github, Maven, Scala, Akka, configuration, logging, testing
 2. Create Actors
 3. Add reference.conf for logging and configuration
 4. Add tests
+5. Use a separate dispatcher
 
