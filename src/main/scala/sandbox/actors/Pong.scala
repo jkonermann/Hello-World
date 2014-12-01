@@ -2,6 +2,7 @@ package sandbox.actors
 
 import akka.actor.{Props, Actor, ActorLogging}
 import sandbox.ActorActivator.pong
+import scala.concurrent._
 
 object Pong {
   def props() =
@@ -10,12 +11,22 @@ object Pong {
 
 class Pong() extends Actor with ActorLogging {
 
+  import context.dispatcher
+
+  var pingActor = self
+
   override def receive: Receive = {
 
     case ping =>
       log.debug(s"Pong received ping")
-      sender() ! pong
-
+      pingActor = sender()
+      Future {
+        blocking {
+          Thread.sleep(1000)
+        }
+        log.debug("Finally done !")
+        pingActor ! pong
+      }
   }
 
 }

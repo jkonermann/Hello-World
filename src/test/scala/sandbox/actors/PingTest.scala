@@ -1,6 +1,7 @@
 package sandbox.actors
 
 import akka.actor.ActorSystem
+import akka.routing.FromConfig
 import akka.testkit.{ImplicitSender, DefaultTimeout, TestKit}
 import org.junit.runner.RunWith
 import org.scalatest.{BeforeAndAfterAll, Matchers, WordSpecLike}
@@ -17,7 +18,9 @@ class PingTest
   with Matchers
   with BeforeAndAfterAll {
 
-  val pongActor = system.actorOf(Pong.props().withDispatcher("pong-dispatcher"), "pong")
+  val pongActor = system.actorOf(Pong.props()
+    .withRouter(FromConfig())
+    .withDispatcher("pong-dispatcher"), "pong")
   val pingActor = system.actorOf(Ping.props(pongActor), "ping")
 
   override def afterAll() {
@@ -35,7 +38,7 @@ class PingTest
 
   "002: Pong " should {
     "send pong when received ping" in {
-      within(500.millis) {
+      within(1500.millis) {
         pongActor ! ping
         expectMsg(pong)
       }
@@ -44,8 +47,8 @@ class PingTest
 
   "003: Ping " should {
     "eventually send DONE after received start" in {
-      within(500.millis) {
-        pingActor ! start(10)
+      within(15000.millis) {
+        pingActor ! start(5)
         expectMsg("DONE")
       }
     }

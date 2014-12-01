@@ -2,7 +2,7 @@
 
 Start from scratch and see what I run into
 
-Keywords: Github, Maven, Scala, Akka, configuration, logging, testing
+Keywords: Github, Maven, Scala, Akka, configuration, logging, testing, spry-can
 
 ## A Hello-World repository
 
@@ -28,4 +28,11 @@ Keywords: Github, Maven, Scala, Akka, configuration, logging, testing
 3. Add reference.conf for logging and configuration
 4. Add tests
 5. Use a separate dispatcher
+6. Create blocking pong With router
+7. Use four pings
+
+## Do something with spray-can
+
+1. Simple-soap server
+2. Simple-soap client
 

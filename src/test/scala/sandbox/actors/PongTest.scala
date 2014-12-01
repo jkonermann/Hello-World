@@ -35,7 +35,7 @@ class PongTest
 
   "001: Pong " should {
     "send pong when received ping" in {
-      within(500.millis) {
+      within(2000.millis) {
         pongActor ! ping
         expectMsg(pong)
       }
