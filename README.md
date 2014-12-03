@@ -1,4 +1,4 @@
-# Hello-World
+# Hello-World (https://travis-ci.org/jkonermann/Hello-World.svg?branch=master)
 
 Start from scratch and see what I run into
 
@@ -13,6 +13,7 @@ Keywords: Github, Maven, Scala, Akka, configuration, logging, testing, spry-can
 5. Push (remote)
 6. Make changes (remote)
 7. Pull
+8. Add Travis CI
 
 ## A Hello-World runtime jar with maven and scala
 
