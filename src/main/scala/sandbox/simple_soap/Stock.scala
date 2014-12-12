@@ -1,6 +1,5 @@
 package sandbox.simple_soap
 
-import spray.http.HttpHeaders.Connection
 import spray.http.{HttpResponse, HttpRequest}
 
 import scala.xml.{XML, NodeSeq}
@@ -65,12 +64,10 @@ class Stock() {
     createResponseXml(stockName, stockPrice)
   }
 
-  def createHttpResponse(request: HttpRequest) = {
+  def createHttpResponse(request:HttpRequest) = {
     val reqXml = XML.loadString(request.message.entity.data.asString.trim())
     val respXml = handleRequest(reqXml)
-    HttpResponse(
-      entity = respXml.toString(),
-      headers = List(Connection("close")))
+    HttpResponse(entity = respXml.toString())
   }
 
   def getStockPrice(response: NodeSeq) = {
