@@ -31,6 +31,7 @@ Keywords: Github, Maven, Scala, Akka, configuration, logging, testing, spry-can
 5. Use a separate dispatcher
 6. Create blocking pong With router
 7. Use four pings
+8. Combine Scala and Java Actors
 
 ## Do something with spray-can
 

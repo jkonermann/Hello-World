@@ -16,6 +16,7 @@ object SimpleSoapServer {
 class SimpleSoapServer extends Actor with ActorLogging {
 
   val stock = new Stock()
+  var httpListener = self
 
   implicit val system = ActorSystem()
   IO(Http) ! Http.Bind(self, interface = "localhost", port = 8080)
@@ -24,6 +25,15 @@ class SimpleSoapServer extends Actor with ActorLogging {
 
     case _: Http.Connected => sender ! Http.Register(self)
 
+    case bound: Http.Bound =>
+      log.debug("*** Received {}", bound)
+      httpListener = sender()
+
+    case b@ Http.Unbound =>
+      log.debug("*** unbound received")
+      Thread.sleep(500)
+      context.system.shutdown()
+
     case Http.CommandFailed =>
 
     case request@ HttpRequest(POST, Uri.Path("/GetStockPrice"), _, _, _) =>
@@ -31,7 +41,9 @@ class SimpleSoapServer extends Actor with ActorLogging {
 
     case Stop =>
       log.debug("*** stop received")
-      context.system.shutdown()
+      httpListener ! Http.Unbind
+
+
 
     case other => log.debug("*** Did not handle: {}", other)
   }
