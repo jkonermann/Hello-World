@@ -10,7 +10,6 @@ import sandbox.simple_soap.Stock
 import spray.can.Http
 import spray.http._
 import HttpMethods._
-import scala.concurrent.Future
 import scala.concurrent.duration._
 
 import scala.util.{Failure, Success}
@@ -29,7 +28,7 @@ object SimpleSoapActivator {
     implicit val timeout: Timeout = Timeout(15.seconds)
     import system.dispatcher // implicit execution context
 
-    val simpleSoapServer = system.actorOf(SimpleSoapServer.props(), "simpleSoapServer")
+    system.actorOf(SimpleSoapServer.props(), "simpleSoapServer")
 
 //    def stockPrise(name: String) {
 //
@@ -64,15 +63,14 @@ object SimpleSoapActivator {
     }
 
     stockPrise("apple")
-//    stockPrise("google")
-//    stockPrise("IBM")
-//    stockPrise("microsoft")
-//    stockPrise("abn")
+    stockPrise("google")
+    stockPrise("IBM")
+    stockPrise("microsoft")
+    stockPrise("abn")
 
     system.scheduler.scheduleOnce(2.second) {
-      simpleSoapServer ! Stop
       system.shutdown()
-      //System.exit(0)
+      System.exit(0)
     }
 
   }
